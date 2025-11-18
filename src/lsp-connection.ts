@@ -14,8 +14,7 @@ export interface LspConnectionOptions {
     showMessageLevel: lsp.MessageType;
 }
 
-export function createLspConnection(options: LspConnectionOptions): lsp.Connection {
-    const connection = lsp.createConnection(lsp.ProposedFeatures.all);
+export function createLspConnection(options: LspConnectionOptions, connection: lsp.Connection): lsp.Connection {
     const lspClient = new LspClientImpl(connection);
     const logger = new LspClientLogger(lspClient, options.showMessageLevel);
     const server: LspServer = new LspServer({
